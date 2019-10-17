@@ -20,9 +20,9 @@ import requests
 executable_path = {"executable_path": r"C:\Users\Owner\Desktop\RU-HOU-DATA-PT-07-2019-U-C\12-Web-Scraping-and-Document-Databases\2\Activities\08-Stu_Splinter\Solved\chromedriver"}
 browser = Browser("chrome", **executable_path, headless=False)
 
-
+def scrape():
 # In[3]:
-
+complete_dict = {}
 
 url = "https://mars.nasa.gov/news/"
 browser.visit(url)
@@ -39,14 +39,14 @@ soup = BeautifulSoup(html, "html.parser")
 
 
 nasa_mars_news_titles = soup.find("div", class_="content_title").text
-print(f"Title: {nasa_mars_news_titles}")
+complete_dict['nasa_mars_news_titles'] = nasa_mars_news_title_s
 
 
 # In[6]:
 
 
 nasa_mars_news_paragraphs = soup.find('div', class_='article_teaser_body')
-print(f"Paragraph: {nasa_mars_news_paragraphs}")
+complete_dict['nasa_mars_news_paragraphs'] = nasa_mars_news_paragraph_s
 
 
 # In[ ]:
@@ -80,7 +80,7 @@ browser.visit(url_1)
 
 
 featured_image_url_1 = url_1 + "spaceimages/images/wallpaper/PIA20465-1920x1200.jpg"
-print(featured_image_url_1)
+complete_dict['featured_image_url_1'] = featured_image_url_1_
 
 
 # Mars Weather
@@ -104,7 +104,7 @@ soup = BeautifulSoup(html, "html.parser")
 
 mars_weather_tweet =soup.find(class_ = 'tweet-text')
 mars_weather_tweet = mars_weather_tweet.text.strip()
-print(mars_weather_tweet)
+complete_dict['mars_weather_tweet'] = mars_weather_tweet_
 
 
 # Mars Facts
@@ -145,7 +145,7 @@ soup = BeautifulSoup(html, "html.parser")
 cerberus_image = soup.find_all("img",class_= "wide-image")
 for image in cerberus_image:
     img_cerberus = "https://astrogeology.usgs.gov" + image['src']
-print(img_cerberus)
+
 
 
 # In[38]:
@@ -154,7 +154,6 @@ print(img_cerberus)
 schiaparelli_image = soup.find_all("img",class_= "wide-image")
 for image in schiaparelli_image:
     img_schiaparelli = "https://astrogeology.usgs.gov" + image['src']
-print(img_schiaparelli)
 
 
 # In[39]:
@@ -163,7 +162,7 @@ print(img_schiaparelli)
 syrtis_image = soup.find_all("img",class_= "wide-image")
 for image in syrtis_image:
     img_syrtis = "https://astrogeology.usgs.gov" + image['src']
-print(img_syrtis)
+
 
 
 # In[40]:
@@ -172,7 +171,7 @@ print(img_syrtis)
 valles_image = soup.find_all("img",class_= "wide-image")
 for image in valles_image:
     img_valles = "https://astrogeology.usgs.gov" + image['src']
-print(img_valles)
+
 
 
 # In[45]:
